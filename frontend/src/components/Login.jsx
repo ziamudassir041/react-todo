@@ -1,6 +1,7 @@
 import { Link,useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
+const BASE_URL = "https://ziamudassir.com"
 const initialForm = {email: "",password: ""}
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-        const response = await axios.post("http://localhost:5500/public-user/login",form);
+        const response = await axios.post(`${BASE_URL}/public-user/login`,form);
 
         console.log("Login successful:", response.data);
         localStorage.setItem("token", response.data.token)

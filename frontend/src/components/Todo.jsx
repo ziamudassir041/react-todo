@@ -2,14 +2,14 @@
 import React from 'react'
 import { useState , useEffect} from 'react'
 import axios from 'axios';
-
+const BASE_URL = "https://ziamudassir.com"
 const TodoApp = () => {
     const [todos, setTodos] = useState([]);
     const [text, setText] = useState('');
     async function getTodos() {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("http://localhost:5500/private-todo/get-todos",
+            const response = await axios.get(`${BASE_URL}/private-todo/get-todos`,
              {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -34,7 +34,7 @@ const TodoApp = () => {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.post("http://localhost:5500/private-todo/create-todo",
+            const response = await axios.post(`${BASE_URL}/private-todo/create-todo`,
                 {
                     task: text,
                     done: false
@@ -57,7 +57,7 @@ const TodoApp = () => {
  async function toggleTodo(id, done) {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.patch(`http://localhost:5500/private-todo/update-todo/${id}`,
+            const response = await axios.patch(`${BASE_URL}/private-todo/update-todo/${id}`,
                 {
                     done: !done
                 }, {
@@ -78,7 +78,7 @@ const TodoApp = () => {
      async function deleteTodo(id) {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://localhost:5500/private-todo/delete-todo/${id}`,
+            await axios.delete(`${BASE_URL}/private-todo/delete-todo/${id}`,
                  {
                 headers: {
                     Authorization: `Bearer ${token}`

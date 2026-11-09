@@ -1,7 +1,7 @@
 import { Link,useNavigate } from 'react-router';
 import { useState } from 'react';
 import axios from "axios"
-
+const BASE_URL = "https://ziamudassir.com"
 const initialForm = {name: "",email: "",password: ""};
 
 const SignUp = () => {
@@ -19,7 +19,7 @@ const SignUp = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:5500/public-user/register",
+                `${BASE_URL}/public-user/register`,
                 form
             );
 
